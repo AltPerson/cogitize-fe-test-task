@@ -1,3 +1,22 @@
 {
-  "test": "Test en"
+  "test": "Test en",
+  "swap": {
+    "title": "Crypto Swap",
+    "subtitle": "Fast & secure exchange",
+    "from": "You send",
+    "to": "You receive",
+    "selectToken": "Select token",
+    "searchToken": "Search token...",
+    "confirm": "Confirm Swap",
+    "enterAmount": "Enter amount",
+    "calculatingRate": "Calculating best rate...",
+    "estimatedRate": "Estimated rate",
+    "usdtEquivalent": "USDT equivalent",
+    "previewError": "Failed to get rate. Try again.",
+    "allTokensLoaded": "All tokens loaded",
+    "noTokensFound": "No tokens found",
+    "successTitle": "Swap Successful! 🎉",
+    "successMessage": "You successfully exchanged {fromAmount} {fromSymbol} → {toAmount} {toSymbol}",
+    "ok": "OK"
+  }
 }

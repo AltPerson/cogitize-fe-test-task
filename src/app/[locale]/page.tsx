@@ -1,14 +1,6 @@
-import { ThemeChanger } from "@/07.shared/ui";
-
 const Home = () => {
   return (
-    <div className="h-dvh w-full flex flex-col items-center justify-center dark:bg-amber-300">
-      <div className="text-mint-500  tablet:text-red-500 w-full grid place-items-center  font-bold font-Fira">
-        HELLO WORLD
-      </div>
-
-      <ThemeChanger />
-    </div>
+    <div className="min-h-dvh w-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 p-4"></div>
   );
 };
 

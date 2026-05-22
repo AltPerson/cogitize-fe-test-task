@@ -1,36 +1,187 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Тестове завдання — Front-End Developer (Middle)
 
-## Getting Started
+> ⏱ Орієнтовний час виконання: **2 години**
 
-First, run the development server:
+---
+
+## Запуск проєкту
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Відкрийте [http://localhost:3000](http://localhost:3000) у браузері.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Передумови
 
-## Learn More
+Проєкт побудований на **FSD (Feature-Sliced Design)** з наступними технологіями:
 
-To learn more about Next.js, take a look at the following resources:
+| Технологія                | Версія          |
+| ------------------------- | --------------- |
+| Next.js                   | 16 (App Router) |
+| React                     | 19              |
+| Redux Toolkit + RTK Query | ^2              |
+| Framer Motion             | ^11             |
+| next-intl                 | ^4              |
+| Tailwind CSS              | ^4              |
+| TypeScript                | ^5              |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ознайомтесь зі структурою шарів FSD перед початком:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+src/
+  02.processes/   ← процеси (ініціалізація застосунку)
+  03.views/       ← сторінки (page-level компоненти)
+  04.widgets/     ← самодостатні блоки UI
+  05.features/    ← юзер-флоу, взаємодії
+  06.entities/    ← бізнес-сутності
+  07.shared/      ← перевикористовуваний код (ui, lib, hooks, utils)
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Завдання 1 — Віджет обміну криптовалют (Swap Widget)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Дизайн
+
+> 🎨 **Figma — Swap Widget:** `[ВСТАВИТИ ПОСИЛАННЯ НА ФІГМУ]`
+
+Реалізуйте повноцінний віджет обміну криптовалют за дизайном.
+
+---
+
+### API
+
+#### Список токенів (з пагінацією)
+
+```
+GET https://api.miex.one/api/v1/public/assets?search=&page=1
+```
+
+**Response:**
+
+```ts
+{
+  currentPage: number;
+  data: {
+    id: number;
+    symbol: string;
+    name: string;
+    assetImage: string;
+  }
+  [];
+  hasNextPage: boolean;
+  maximumPages: number;
+}
+```
+
+#### Розрахунок курсу обміну
+
+```
+POST https://api.miex.one/api/v1/public/swap/preview
+```
+
+**Payload:**
+
+```ts
+{
+  fromAssetId: number;
+  toAssetId: number;
+  direction: "from" | "to";
+  amount: string;
+  balanceType: ["main", "trade"];
+}
+```
+
+**Response:**
+
+```ts
+{
+  estimatedGive: string;
+  estimatedReceive: string;
+  estimatedRate: string;
+  estimatedUsdtEquivalent: string;
+}
+```
+
+---
+
+### Функціональні вимоги
+
+**Вибір токенів:**
+
+- [ ] Дропдаун зі списком токенів для полів "Відправляєте" та "Отримуєте"
+- [ ] Пошук токенів за назвою / символом
+- [ ] **Infinite scroll** — підвантаження наступної сторінки при прокрутці списку вниз. Використати RTK Query для реалізаціі **Infinite scroll**
+- [ ] За замовчуванням підставляти: **USDT → BTC**
+
+**Обмін:**
+
+- [ ] Введення суми у полі "Відправляєте" → автоматично перераховується поле "Отримуєте"
+- [ ] Введення суми у полі "Отримуєте" → автоматично перераховується поле "Відправляєте"
+- [ ] Запит на `/swap/preview` надсилати з **throttling** (не частіше одного разу на 600 мс)
+- [ ] При зміні токену — **скинути курс** та очистити обидва інпути (залишити placeholder)
+- [ ] Кнопка **Swap** — міняє токени місцями (не суми), перераховує курс
+
+**Підтвердження:**
+
+- [ ] Кнопка "Підтвердити" **заблокована** до отримання успішного preview
+- [ ] При кліку — відображається модальне вікно:
+  > "Ви успішно обміняли `{symbol} {amount}` → `{symbol} {amount}`"
+- [ ] Кнопка **ОК** закриває модалку, скидає форму
+
+---
+
+### Технічні вимоги
+
+- [ ] Розподіл по шарах FSD — сутності (`entities`), фічі (`features`), віджет (`widgets`)
+- [ ] Обов'язково розносити бізнес-логіку та UI-представлення по окремих слайсах відповідного шару
+- [ ] RTK Query для всіх запитів (reducer + middleware підключити у `store.ts`)
+- [ ] Анімації за допомогою **Framer Motion**: поява блоків, відкриття дропдауну, модальне вікно
+- [ ] Локалізація через **next-intl**: підтримати мови `en` та `uk` (файли у `dictionaries/`)
+- [ ] Типізація — без `any`, без `@ts-ignore`
+
+---
+
+## Завдання 2 — Анімація блоку
+
+> 🎨 **Figma — Animated Block:** `[ВСТАВИТИ ПОСИЛАННЯ НА ФІГМУ]`
+> 🎬 **Reference animation:** `[ВСТАВИТИ ПОСИЛАННЯ НА РЕФЕРЕНС]`
+
+Реалізуйте анімацію блоку, використовуючи **Framer Motion**.
+Загалом сайт потрібно "оживити" власними доречними анімаціями на ваш розсуд, а виділений блок із макета анімувати за наданим референсом.
+
+**Вимоги:**
+
+- [ ] Додати доречні авторські анімації для сайту, щоб інтерфейс відчувався живим
+- [ ] Виділений блок анімувати за прикладом із наданого референсу
+- [ ] Плавні переходи та акуратна інтеграція анімацій в інтерфейс
+- [ ] Компонент розмістити у відповідному шарі FSD
+
+---
+
+## Критерії оцінювання
+
+| Критерій                                          | Вага   |
+| ------------------------------------------------- | ------ |
+| Дотримання структури FSD                          | ⭐⭐⭐ |
+| Якість та читабельність коду                      | ⭐⭐⭐ |
+| Коректна робота infinite scroll                   | ⭐⭐⭐ |
+| Throttling запитів до API                         | ⭐⭐   |
+| Якість анімацій (Framer Motion)                   | ⭐⭐   |
+| Локалізація (en / uk)                             | ⭐⭐   |
+| Покриття крайових кейсів (помилки, порожні стани) | ⭐⭐   |
+| Типізація TypeScript                              | ⭐⭐   |
+| Наявність тестів                                  | ⭐     |
+
+---
+
+## Здача завдання
+
+1. Завантажте рішення у **публічний GitHub репозиторій**
+2. Надішліть посилання на репозиторій
+
+> **Запитання щодо завдання?** Пишіть — відповімо.
