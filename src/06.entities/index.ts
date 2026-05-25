@@ -1,1 +1,1 @@
-export * from "./ipapi";
+export {};

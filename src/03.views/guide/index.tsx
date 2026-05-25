@@ -303,10 +303,6 @@ const GuideView = () => {
             <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
               Test assignment guide
             </h1>
-            <p className="text-base leading-7 text-slate-600 sm:text-lg">
-              Akuratno oformlennyy README s bazovoy tipografikoy, tablicami,
-              spiskami i otdelnymi semanticheskimi blokami dlya koda.
-            </p>
           </div>
         </div>
 

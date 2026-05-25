@@ -3,8 +3,6 @@
 
 @import "tailwindcss";
 
-@import "./font/FiraSans/FiraSans.css" layer(utilities);
-@import "./_media.css" layer(utilities);
 @import "./_variables.css" layer(utilities);
 @import "./_scroll-bar.css" layer(utilities);
 
@@ -48,7 +46,7 @@
 
   --screens-hover: {
     raw: "(hover: hover)";
-  }
+  };
 }
 
 .dark {

@@ -1,4 +1,4 @@
-# Тестове завдання — Front-End Developer (Middle)
+# Тестове завдання — Front-End Developer
 
 > ⏱ Орієнтовний час виконання: **2 години**
 
@@ -12,6 +12,16 @@ npm run dev
 ```
 
 Відкрийте [http://localhost:3000](http://localhost:3000) у браузері.
+
+---
+
+## Sitemap
+
+| Маршрут                                   | Опис                                          |
+| ----------------------------------------- | --------------------------------------------- |
+| [`/guide`](http://localhost:3000/guide)   | Сторінка з технічним завданням (цей документ) |
+| [`/swap`](http://localhost:3000/swap)     | Завдання 1 — віджет обміну криптовалют        |
+| [`/design`](http://localhost:3000/design) | Завдання 2 — анімований верстка               |
 
 ---
 
@@ -41,13 +51,28 @@ src/
   07.shared/      ← перевикористовуваний код (ui, lib, hooks, utils)
 ```
 
+Кожен шар (крім `shared` та `views`) може містити **сегменти**:
+
+```
+05.features/
+  swap-form/
+    api/          ← RTK Query endpoints
+    model/        ← бізнес-логіка
+      hooks/      ← useSwapForm, useTokenSelect, ...
+      context/    ← React Context (якщо потрібен)
+    ui/           ← компоненти фічі
+    index.ts      ← публічне API фічі (тільки те, що треба зовні)
+```
+
+> Правило: **імпортувати можна лише через `index.ts`**. Прямі імпорти з внутрішніх файлів сегмента заборонені.
+
 ---
 
 ## Завдання 1 — Віджет обміну криптовалют (Swap Widget)
 
 ### Дизайн
 
-> 🎨 **Figma — Swap Widget:** `[ВСТАВИТИ ПОСИЛАННЯ НА ФІГМУ]`
+> 🎨 **Figma — Swap Widget:** `https://www.figma.com/design/gsORiIKuNNp0mF9XvREqKR/Test_task_frontend-developer?node-id=1-2598&t=fCwZh4Cy8oEKG79J-0`
 
 Реалізуйте повноцінний віджет обміну криптовалют за дизайном.
 
@@ -55,10 +80,10 @@ src/
 
 ### API
 
-#### Список токенів (з пагінацією)
+Список токенів (з пагінацією)
 
 ```
-GET https://api.miex.one/api/v1/public/assets?search=&page=1
+GET https://api.miex.one/api/v1/public/assets?search=BTC&page=1
 ```
 
 **Response:**
@@ -78,7 +103,7 @@ GET https://api.miex.one/api/v1/public/assets?search=&page=1
 }
 ```
 
-#### Розрахунок курсу обміну
+Розрахунок курсу обміну
 
 ```
 POST https://api.miex.one/api/v1/public/swap/preview
@@ -114,7 +139,6 @@ POST https://api.miex.one/api/v1/public/swap/preview
 **Вибір токенів:**
 
 - [ ] Дропдаун зі списком токенів для полів "Відправляєте" та "Отримуєте"
-- [ ] Пошук токенів за назвою / символом
 - [ ] **Infinite scroll** — підвантаження наступної сторінки при прокрутці списку вниз. Використати RTK Query для реалізаціі **Infinite scroll**
 - [ ] За замовчуванням підставляти: **USDT → BTC**
 
@@ -146,13 +170,14 @@ POST https://api.miex.one/api/v1/public/swap/preview
 
 ---
 
-## Завдання 2 — Анімація блоку
+## Завдання 2 — Верстка та анимація блоків
 
-> 🎨 **Figma — Animated Block:** `[ВСТАВИТИ ПОСИЛАННЯ НА ФІГМУ]`
-> 🎬 **Reference animation:** `[ВСТАВИТИ ПОСИЛАННЯ НА РЕФЕРЕНС]`
+> 🎨 **Figma — Animated Block:** `https://www.figma.com/design/gsORiIKuNNp0mF9XvREqKR/Test_task_frontend-developer?node-id=1-1072&t=fCwZh4Cy8oEKG79J-0`
 
-Реалізуйте анімацію блоку, використовуючи **Framer Motion**.
+Реалізуйте верстку 1, 2, 3 секцій. анімацію блоку, використовуючи **Framer Motion** або іншу бібліотеку.
 Загалом сайт потрібно "оживити" власними доречними анімаціями на ваш розсуд, а виділений блок із макета анімувати за наданим референсом.
+
+**За бажанням можно реалізувати секцію під номером 4**
 
 **Вимоги:**
 

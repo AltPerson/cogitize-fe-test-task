@@ -15,9 +15,7 @@ const config = () => {
         },
       ];
     },
-    env: {
-      NEXT_PUBLIC_MIEX_API_URL: "https://apidev.miex.one/api/v1",
-    },
+    env: {},
     reactStrictMode: false,
     images: {
       unoptimized: true,
