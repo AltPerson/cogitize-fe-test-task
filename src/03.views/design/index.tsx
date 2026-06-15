@@ -1,5 +1,7 @@
+import { PhaseLanding } from "@/04.widgets";
+
 const DesignView = () => {
-  return <></>;
+  return <PhaseLanding />;
 };
 
 export default DesignView;

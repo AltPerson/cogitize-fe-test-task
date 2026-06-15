@@ -13,5 +13,70 @@
     "selectName": "Cryptocurrency",
     "successMessage": "You successfully exchanged {fromSymbol} {fromAmount} → {toSymbol} {toAmount}",
     "modalOk": "OK"
+  },
+  "phaseLanding": {
+    "brand": "PHASE",
+    "login": "Log in",
+    "nav": {
+      "home": "Home",
+      "howItWorks": "How it works",
+      "features": "Features",
+      "forWhom": "For whom"
+    },
+    "hero": {
+      "badge": "Independent minds only",
+      "subtitle": "Phase is your personal editorial storefront",
+      "cta": "Create your Phase"
+    },
+    "marquee": {
+      "identity": "YOUR IDENTITY",
+      "percent": "100%",
+      "free": "FREE FOREVER",
+      "share": "SHARE WITH YOUR AUDIENCE"
+    },
+    "creators": {
+      "eyebrow": "Creators inspire millions every single day",
+      "sticker": "Our mission",
+      "headline": {
+        "phase": "PHASE IS A",
+        "isSpace": "SPACE FOR",
+        "forCreators": "CREATORS TO",
+        "toBeSeen": "BE SEEN"
+      },
+      "highlightOne": "Just you and your tribe",
+      "highlightTwo": "Zero algorithm noise.",
+      "description": "Only your raw concepts, your curated drops, and the community that stands by your side",
+      "cardSticker": "Action not applause"
+    },
+    "steps": {
+      "titleLineOne": "Three",
+      "titleLineTwo": "steps to",
+      "titleLineThree": "drops",
+      "badge": "It is that simple",
+      "productName": "Gifty",
+      "startSticker": "Start",
+      "sideTitle": "Create, add, share.",
+      "sideDescription": "Everything you need to start receiving gifts without the friction",
+      "cards": {
+        "create": {
+          "sticker": "Start",
+          "title": "Create your account",
+          "description": "Sign up in under a minute. Claim your unique name and make the space yours."
+        },
+        "add": {
+          "sticker": "Add",
+          "title": "Add your wishes",
+          "description": "Create lots: add a photo, title, price, and link to the item. Dream big, from a cup of coffee to a brand-new microphone."
+        },
+        "share": {
+          "sticker": "Share",
+          "title": "Share with your fans",
+          "description": "Copy your link and drop it in your bio, stories, or video description. Fans visit your storefront and gift you exactly what you want."
+        }
+      }
+    },
+    "mobileMenu": {
+      "cta": "Create your Gifty"
+    }
   }
 }

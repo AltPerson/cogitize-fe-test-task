@@ -1,25 +1,21 @@
 import { locales, routing } from "@/i18n";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { Inter } from "next/font/google";
+import { Geist } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Toaster } from "sonner";
 import { AppLayout } from "../layouts";
 import { ReduxProvider, ThemeProvider } from "../providers";
 import "../styles/globals.css";
 
-const INTER = Inter({
+const GEIST = Geist({
   weight: ["100", "300", "400", "500", "700", "900"],
-  variable: "--font-inter",
-  subsets: ["cyrillic-ext", "latin-ext"],
+  variable: "--font-geist",
+  subsets: ["cyrillic", "latin-ext"],
 });
-
-//fake
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
-
-// fake
 
 const RootLayout = async ({
   children,
@@ -35,7 +31,9 @@ const RootLayout = async ({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${INTER.variable} min-h-screen flex flex-col`}>
+      <body
+        className={`${GEIST.variable} ${GEIST.className} min-h-screen flex flex-col`}
+      >
         <NextIntlClientProvider>
           <ReduxProvider>
             <ThemeProvider
@@ -46,7 +44,6 @@ const RootLayout = async ({
             >
               <AppLayout>{children}</AppLayout>
             </ThemeProvider>
-            {/* dont set z-index 10000000000000! */}
             <Toaster />
           </ReduxProvider>
         </NextIntlClientProvider>
