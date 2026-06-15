@@ -14,6 +14,10 @@
     "successMessage": "You successfully exchanged {fromSymbol} {fromAmount} → {toSymbol} {toAmount}",
     "modalOk": "OK"
   },
+  "pageSwitcher": {
+    "pages": "Pages",
+    "pagesSwitcherTitle": "Page Switcher"
+  },
   "phaseLanding": {
     "brand": "PHASE",
     "login": "Log in",

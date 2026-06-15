@@ -14,6 +14,10 @@
     "successMessage": "Ви успішно обміняли {fromSymbol} {fromAmount} → {toSymbol} {toAmount}",
     "modalOk": "OK"
   },
+  "pageSwitcher": {
+    "pages": "Сторінки",
+    "pagesSwitcherTitle": "Перемикач сторінок"
+  },
   "phaseLanding": {
     "brand": "PHASE",
     "login": "Увійти",
