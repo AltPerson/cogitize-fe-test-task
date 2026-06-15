@@ -1,1 +1,17 @@
-{}
+{
+  "swap": {
+    "title": "Оберіть криптовалюту",
+    "fromLabel": "Відправляєте",
+    "toLabel": "Отримуєте",
+    "searchPlaceholder": "Пошук монет",
+    "loading": "Завантаження...",
+    "loadError": "Не вдалося завантажити валюти",
+    "submit": "Підтвердити",
+    "calculating": "Розрахунок...",
+    "swapCurrencies": "Поміняти валюти",
+    "selectSymbol": "Обрати",
+    "selectName": "Криптовалюта",
+    "successMessage": "Ви успішно обміняли {fromSymbol} {fromAmount} → {toSymbol} {toAmount}",
+    "modalOk": "OK"
+  }
+}

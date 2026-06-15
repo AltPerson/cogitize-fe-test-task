@@ -1,1 +1,17 @@
-{}
+{
+  "swap": {
+    "title": "Select cryptocurrency",
+    "fromLabel": "You send",
+    "toLabel": "You Receive",
+    "searchPlaceholder": "Search coins",
+    "loading": "Loading...",
+    "loadError": "Failed to load currencies",
+    "submit": "Confirm",
+    "calculating": "Calculating...",
+    "swapCurrencies": "Swap currencies",
+    "selectSymbol": "Select",
+    "selectName": "Cryptocurrency",
+    "successMessage": "You successfully exchanged {fromSymbol} {fromAmount} → {toSymbol} {toAmount}",
+    "modalOk": "OK"
+  }
+}
